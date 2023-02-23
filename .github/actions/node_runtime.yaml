@@ -1,0 +1,5 @@
+name: "Build and Publish Image to Registy"
+description: It's build tag and publish the image on registry 
+
+inputs:
+  
