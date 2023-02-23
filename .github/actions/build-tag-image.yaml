@@ -1,0 +1,39 @@
+name: "Build and Publish Image to Registy"
+description: It's build tag and publish the image on registry 
+
+inputs:
+  registry_credentials: 
+    url: 
+      description: "the registry url"
+      required: true
+    username:
+      description: "Username for image registry"
+      required: true
+    password:
+      description: "Password for image registry"
+      required: true
+  repository:
+    description: "Name of the repository on the registry"
+    required: true
+  tag: 
+    description: "How to tag the image"
+    required: true    
+
+runs:
+  # allow you to bundle multiple workflow steps into a single action, combining multiple run commands into a single reusable action.
+  using: "composite"
+  steps:
+      - name: Connect to the registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ inputs.registry_credentials.url }}
+          username: ${{ inputs.registry_credentials.username }}
+          password: ${{ inputs.registry_credentials.password }}
+          
+      - name: Build, tag, and push image to the registry ( Amazon ECR )
+        env:
+          REGISTRY: ${{ inputs.registry_credentials.url }}
+          IMAGE_NAME: ${{ inputs.repository }}:${{ inputs.tag }}
+        run: |
+          docker build -t $REGISTRY/$IMAGE_NAME .
+          docker push $REGISTRY/$IMAGE_NAME
