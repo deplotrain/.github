@@ -1,0 +1,40 @@
+name: "Fetch dependencies across Elixir and Nodejs"
+description:  setup ssh-agent to use the private ssh-key to fetch private dependencies
+
+
+inputs:
+  type: 
+    description: app type  value => elixir or nodejs
+    required: true
+  mode:
+    description: fetch mode prod or dev
+
+
+runs:
+  using: "composite"
+  steps: 
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_KEY }}
+        name: id_rsa # optional
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+    - name:  fetch node dependencies
+      if:  ${{inputs.type}} == 'NODEJS'
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+      run: |   
+        npm install 
+        npm ci
+
+    - name:  fetch elixir dependencies
+      if: ${{inputs.type}} == 'ELIXIR'
+      uses: erlef/setup-beam@v1
+      with:
+          otp-version: ${{inputs.otp}}
+          elixir-version: ${{inputs.elixir}}
+      run: |
+        
+      
