@@ -1,0 +1,52 @@
+name: Called Workflow
+on:
+  workflow_call:
+jobs:
+   TestAndBuildArtifact:
+     name: Test and build the artifact
+     runs-on: self-hosted
+     permissions:
+       id-token: write
+       contents: read
+     steps:
+       - uses: actions/checkout@v3
+       - uses: myriad-sas/.github/.github/actions/scan-deps-test-elixir@main
+       - name: build artifact
+         run: |
+           mix compile
+           mix release
+#       - name: Upload artifact
+#         uses: actions/upload-artifact@v3
+#         with:
+#            name: artifact upload
+#            path:
+
+   BuildScanAndPublish:
+     name: Build Scan and Publish the image
+#     needs: TestAndBuildArtifact
+     runs-on: self-hosted
+     if: github.ref != 'refs/heads/feature**'
+     permissions:
+       id-token: write
+       contents: read
+     steps:
+       - uses: actions/checkout@v3
+       - uses: myriad-sas/.github/.github/actions/build-scan-registry@main
+         with:
+           url: registry.hub.docker.com
+           username: ${{secret.USERNAME}}
+           password: ${{secret.PASSWORD}}
+           repository: hub-covid
+           tag: devtag
+
+
+
+
+
+
+          
+      
+      
+
+      
+
