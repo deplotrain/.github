@@ -10,7 +10,7 @@ jobs:
        contents: read
      steps:
        - uses: actions/checkout@v3
-       - uses: myriad-sas/.github/.github/actions/scan-deps-test-elixir@main
+       - uses: deplotrain/.github/.github/actions/container-image.yaml@main
        - name: build artifact
          run: |
            mix compile
@@ -31,7 +31,7 @@ jobs:
        contents: read
      steps:
        - uses: actions/checkout@v3
-       - uses: myriad-sas/.github/.github/actions/build-scan-registry@main
+       - uses: deplotrain/.github/.github/actions/linter.yaml@main
          with:
            url: registry.hub.docker.com
            username: ${{secret.USERNAME}}
