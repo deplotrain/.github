@@ -2,16 +2,15 @@ name: "Build and Publish Image to Registy"
 description: It's build tag , scan before publish the image on registry
 
 inputs:
-  registry_credentials:
-    url:
-      description: "the registry url"
-      required: true
-    username:
-      description: "Username for image registry"
-      required: true
-    password:
-      description: "Password for image registry"
-      required: true
+  url:
+    description: "the registry url"
+    required: true
+  username:
+    description: "Username for image registry"
+    required: true
+  password:
+    description: "Password for image registry"
+    required: true
   repository:
     description: "Name of the repository on the registry"
     required: true
