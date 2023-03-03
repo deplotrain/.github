@@ -1,6 +1,10 @@
 name: Called Workflow
 on:
   workflow_call:
+    inputs:
+      current_branch:
+        required: true
+        type: string
 jobs:
    TestAndBuildArtifact:
      name: Test and build the artifact
@@ -25,7 +29,7 @@ jobs:
      name: Build Scan and Publish the image
 #     needs: TestAndBuildArtifact
      runs-on: self-hosted
-     if: github.ref != 'refs/heads/feature**'
+     if: ${{inputs.current_branch}} != 'refs/heads/feature**'
      permissions:
        id-token: write
        contents: read
