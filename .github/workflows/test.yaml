@@ -8,7 +8,7 @@ on:
 jobs:
    TestAndBuildArtifact:
      name: Test and build the artifact
-     runs-on: self-hosted
+     runs-on: ubuntu-latest
      permissions:
        id-token: write
        contents: read
@@ -33,7 +33,7 @@ jobs:
      name: Build Scan and Publish the image
      needs: TestAndBuildArtifact
      if: ${{inputs.current_branch}} != 'refs/heads/feature**' && contains(join(needs.TestAndBuildArtifact.result, ','), 'success')
-     runs-on: self-hosted
+     runs-on: ubuntu-latest
      permissions:
        id-token: write
        contents: read
