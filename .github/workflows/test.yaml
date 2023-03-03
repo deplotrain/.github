@@ -42,8 +42,8 @@ jobs:
        - uses: deplotrain/.github/.github/actions/push-registry@main
          with:
            url: registry.hub.docker.com
-           username: ${{secrets.USERNAME}}
-           password: ${{secrets.PASSWORD}}
+          #  username: ${{secrets.USERNAME}}
+          #  password: ${{secrets.PASSWORD}}
            repository: hub-covid
            tag: devtag
 
