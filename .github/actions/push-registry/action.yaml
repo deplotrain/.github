@@ -5,12 +5,12 @@ inputs:
   url:
     description: "the registry url"
     required: true
-  # username:
-  #   description: "Username for image registry"
-  #   required: true
-  # password:
-  #   description: "Password for image registry"
-  #   required: true
+  username:
+    description: "Username for image registry"
+    required: true
+  password:
+    description: "Password for image registry"
+    required: true
   repository:
     description: "Name of the repository on the registry"
     required: true
@@ -26,8 +26,8 @@ runs:
       uses: docker/login-action@v2
       with:
         registry: ${{ inputs.url }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
+        username: ${{ inputs.username }}
+        password: ${{ inputs.password }}
 
     - name: Build image with tag
       env:

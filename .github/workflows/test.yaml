@@ -5,6 +5,13 @@ on:
       current_branch:
         required: true
         type: string
+    secrets:
+      USERNAME: 
+        required: true
+        type: string
+      PASSWORD: 
+        required: true
+        type: string
 jobs:
    TestAndBuildArtifact:
      name: Test and build the artifact
@@ -42,8 +49,8 @@ jobs:
        - uses: deplotrain/.github/.github/actions/push-registry@main
          with:
            url: registry.hub.docker.com
-          #  username: ${{secrets.USERNAME}}
-          #  password: ${{secrets.PASSWORD}}
+           username: ${{secrets.USERNAME}}
+           password: ${{secrets.PASSWORD}}
            repository: hub-covid
            tag: devtag
 
