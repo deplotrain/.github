@@ -27,9 +27,9 @@ jobs:
 
    BuildScanAndPublish:
      name: Build Scan and Publish the image
-#     needs: TestAndBuildArtifact
-     runs-on: self-hosted
+     needs: TestAndBuildArtifact
      if: ${{inputs.current_branch}} != 'refs/heads/feature**' && contains(join(needs.TestAndBuildArtifact.result, ','), 'success')
+     runs-on: self-hosted
      permissions:
        id-token: write
        contents: read
