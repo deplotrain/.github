@@ -14,7 +14,7 @@ jobs:
        contents: read
      steps:
        - uses: actions/checkout@v3
-       - uses: ./.github/actions/linter.yaml@main
+       - uses: deplotrain/.github/.github/actions/linter.yaml@main
          with:
           otp: '25.2.2'
           elixir: '1.14.3'
@@ -39,7 +39,7 @@ jobs:
        contents: read
      steps:
        - uses: actions/checkout@v3
-       - uses: ./.github/actions/container-image.yaml@main
+       - uses: deplotrain/.github/.github/actions/container-image.yaml@main
          with:
            url: registry.hub.docker.com
            username: ${{secrets.USERNAME}}
