@@ -1,9 +1,15 @@
 name: "Fetch dependencies across Elixir and Nodejs"
 description:  setup ssh-agent to use the private ssh-key to fetch private dependencies
 
-#inputs:
+inputs:
 #  mode:
 #    description: fetch mode prod or dev
+  otp: 
+   description: version of 
+   required: true
+  elixir: 
+   description: version of 
+   required: true
 runs:
   using: "composite"
   steps:
