@@ -21,6 +21,7 @@ runs:
   using: "composite"
   steps:
     - name: Install SSH key
+      shell: bash
       uses: shimataro/ssh-key-action@v2
       with:
         key: ${{ inputs.ssh_key }}
@@ -28,25 +29,18 @@ runs:
         known_hosts: ${{ inputs.known_hosts }}
 
     - name:  fetch elixir dependencies
+      shell: bash
       uses: erlef/setup-beam@v1
       with:
         otp-version: ${{inputs.otp}}
         elixir-version: ${{inputs.elixir}}
-
-    - name: Install hex and rebar
-      run: | 
-        mix local.hex --force 
-        mix local.rebar --force
-        mix hex.audit
-      if: always()
-
-    - name: Install dependencies
       run: |
         mix deps.audit
         mix deps.get
       if: always()
 
     - name: Code linting
+      shell: bash
       run: |
         mix format --check-formatted
         mix credo --strict
@@ -54,5 +48,6 @@ runs:
       if: always()
 
     - name: Run tests
+      shell: bash
       run: mix test
       if: always()
