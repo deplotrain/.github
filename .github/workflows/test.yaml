@@ -8,10 +8,8 @@ on:
     secrets:
       USERNAME: 
         required: true
-        type: string
       PASSWORD: 
         required: true
-        type: string
 jobs:
    TestAndBuildArtifact:
      name: Test and build the artifact
