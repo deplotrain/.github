@@ -10,15 +10,22 @@ inputs:
   elixir: 
    description: version of 
    required: true
+  ssh_key:
+    description: version of 
+    required: true
+  known_hosts:
+    description: version of 
+    required: true
+
 runs:
   using: "composite"
   steps:
     - name: Install SSH key
       uses: shimataro/ssh-key-action@v2
       with:
-        key: ${{ secrets.SSH_KEY }}
+        key: ${{ inputs.ssh_key }}
         name: id_rsa
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        known_hosts: ${{ inputs.known_hosts }}
 
     - name:  fetch elixir dependencies
       uses: erlef/setup-beam@v1
