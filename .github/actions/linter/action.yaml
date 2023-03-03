@@ -21,7 +21,6 @@ runs:
   using: "composite"
   steps:
     - name: Install SSH key
-      shell: bash
       uses: shimataro/ssh-key-action@v2
       with:
         key: ${{ inputs.ssh_key }}
@@ -37,8 +36,7 @@ runs:
       run: |
         mix deps.audit
         mix deps.get
-      if: always()
-
+   
     - name: Code linting
       shell: bash
       run: |
