@@ -12,7 +12,7 @@ on:
         required: true
       SSH_KEY: 
         required: true
-      KNOW_HOSTS: 
+      KNOWN_HOSTS: 
         required: true
 jobs:
    TestAndBuildArtifact:
@@ -28,7 +28,7 @@ jobs:
           otp: '25.2.2'
           elixir: '1.14.3'
           ssh_key: ${{ secrets.SSH_KEY }}
-          known_hosts: ${{ secrets.KNOW_HOSTS }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
           
        - name: build artifact
          run: |
