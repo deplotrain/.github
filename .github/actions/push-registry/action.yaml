@@ -30,6 +30,7 @@ runs:
         password: ${{ inputs.password }}
 
     - name: Build image with tag
+      shell: bash
       env:
         IMAGE_FOR_REGISTRY: ${{ inputs.url }}/${{ inputs.repository }}:${{ inputs.tag }}
         SSH_KEY: ${{secret.SSH_KEY}}
@@ -46,4 +47,5 @@ runs:
 #        severity: 'CRITICAL,HIGH'
 
     - name: Publish image built and scanned to the registry
+      shell: bash
       run: docker push $IMAGE_FOR_REGISTRY
