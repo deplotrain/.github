@@ -21,12 +21,14 @@ runs:
         name: id_rsa
         known_hosts: ${{ inputs.known_hosts }}
 
-    - name:  fetch elixir dependencies
-      shell: bash
+    - name:  Set up Elixir
       uses: erlef/setup-beam@v1
       with:
-        otp-version: ['25.2.2']
-        elixir-version: ['1.14.3']
+        otp-version: '25.2.2'
+        elixir-version: '1.14.3'
+        
+    - name:  fetch elixir dependencies
+      shell: bash
       run: |
         mix deps.audit
         mix deps.get
