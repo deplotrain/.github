@@ -25,8 +25,8 @@ runs:
       shell: bash
       uses: erlef/setup-beam@v1
       with:
-        otp-version: ${{inputs.otp}}
-        elixir-version: ${{inputs.elixir}}
+        otp-version: ['25.2.2']
+        elixir-version: ['1.14.3']
       run: |
         mix deps.audit
         mix deps.get
