@@ -4,12 +4,6 @@ description:  setup ssh-agent to use the private ssh-key to fetch private depend
 inputs:
 #  mode:
 #    description: fetch mode prod or dev
-  otp: 
-   description: version of 
-   required: true
-  elixir: 
-   description: version of 
-   required: true
   ssh_key:
     description: version of 
     required: true
