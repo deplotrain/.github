@@ -52,4 +52,4 @@ runs:
 
     - name: Publish image built and scanned to the registry
       shell: bash
-      run: docker push $IMAGE_FOR_REGISTRY
+      run: docker push ${{ inputs.url }}/${{ inputs.repository }}:${{ inputs.tag }}
