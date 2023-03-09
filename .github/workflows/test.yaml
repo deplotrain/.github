@@ -15,34 +15,9 @@ on:
       KNOWN_HOSTS: 
         required: true
 jobs:
-   TestAndBuildArtifact:
-     name: Test and build the artifact
-     runs-on: ubuntu-latest
-     permissions:
-       id-token: write
-       contents: read
-     steps:
-       - uses: actions/checkout@v3
-       
-       - uses: deplotrain/.github/.github/actions/linter@main
-         with:
-          ssh_key: ${{ secrets.SSH_KEY }}
-          known_hosts: ${{ secrets.KNOWN_HOSTS }}
-          
-       - name: build artifact
-         run: |
-           mix compile
-           mix release
-#       - name: Upload artifact
-#         uses: actions/upload-artifact@v3
-#         with:
-#            name: artifact upload
-#            path:
 
    BuildScanAndPublish:
      name: Build Scan and Publish the image
-     needs: TestAndBuildArtifact
-     if: ${{inputs.current_branch}} != 'refs/heads/feature**' && contains(join(needs.TestAndBuildArtifact.result, ','), 'success')
      runs-on: ubuntu-latest
      permissions:
        id-token: write
@@ -55,7 +30,7 @@ jobs:
            username: ${{ secrets.USERNAME }}
            password: ${{ secrets.PASSWORD }}
            ssh_key: ${{ secrets.SSH_KEY }}
-           repository: hub-covid
+           repository: kueter/hub-covid
            tag: devtag
 
 
