@@ -1,4 +1,4 @@
-name: "Fetch dependencies across Elixir and Nodejs"
+name: "Fetch dependencies across Elixir"
 description:  setup ssh-agent to use the private ssh-key to fetch private dependencies
 
 inputs:

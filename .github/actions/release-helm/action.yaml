@@ -1,0 +1,43 @@
+name: "Package helm release and publish to s3"
+description: set the chart file with the new image and generate the chart.tgz file and push to s3 bucket
+
+inputs:
+  url:
+    description: "bucket endpoint"
+    required: true
+  username:
+    description: "AWS ACCESS_KEY"
+    required: true
+  password:
+    description: "AWS ACCESS_SECRET_KEY"
+    required: true
+  imageRef:
+    description: "The new image published"
+    required: true
+  app:
+    description: "The new image published"
+    required: true
+
+runs:
+  # allow you to bundle multiple workflow steps into a single action, combining multiple run commands into a single reusable action.
+  using: "composite"
+  steps: 
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ inputs.username }}
+        aws-secret-access-key: ${{ inputs.password }}
+        aws-region: eu-west-3
+
+    - name: Helm release
+      uses: shellbear/helm-release-action@0.1
+      env: 
+        version: ${{ inputs.imageRef }}
+        path: ${{ inputs.app }}
+      run: helm package  --app-version=0.9.8  --version=0.9.8  ./$path   
+      with:
+        repo: s3://mycharthelm/
+        chart: ./${{ inputs.app }}
+      
+
+    

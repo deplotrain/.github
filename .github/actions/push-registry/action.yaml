@@ -6,10 +6,10 @@ inputs:
     description: "the registry url"
     required: true
   username:
-    description: "Username for image registry"
+    description: "AWS ACCESS_KEY"
     required: true
   password:
-    description: "Password for image registry"
+    description: "AWS ACCESS_SECRET_KEY"
     required: true
   ssh_key:
     description: "ssh private key"
