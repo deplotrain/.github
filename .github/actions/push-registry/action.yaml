@@ -37,8 +37,8 @@ runs:
       id: vars
       env:
        KEY: ${{ inputs.ssh_key }}
-      run: echo "key=$(echo $KEY | base64)"
-      
+      run: echo "key=$(echo $KEY | base64)" >> $GITHUB_OUTPUT
+
     - name: Build image with tag
       shell: bash
       env: 
