@@ -68,9 +68,10 @@ jobs:
         contents: read
       steps:
         - name: Checkout Helm repo
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
           with:
             repository: ${{ inputs.repository }}
+            ref: 'main'
         - uses: deplotrain/.github/.github/actions/release-helm@main
           with:
             url: ${{ secrets.S3_BUCKET }}
