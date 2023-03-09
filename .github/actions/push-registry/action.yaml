@@ -37,10 +37,8 @@ runs:
       env:
         IMAGE_FOR_REGISTRY: ${{ inputs.url }}/${{ inputs.repository }}:${{ inputs.tag }}
         SSH_KEY: ${{ inputs.ssh_key }}
-      run: |
-        KEY=$(echo $SSH_KEY | base64)
-        echo $KEY
-        docker build -t $IMAGE_FOR_REGISTRY --build-arg SSH_KEY=$KEY -f ./Dockerfile
+      run:
+        docker build -t $IMAGE_FOR_REGISTRY . --build-arg SSH_KEY=$(echo $SSH_KEY | base64)
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
