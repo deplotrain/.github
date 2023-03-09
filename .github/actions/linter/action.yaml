@@ -31,7 +31,6 @@ runs:
     - name:  fetch elixir dependencies
       shell: bash
       run: |
-        mix deps.audit
         mix deps.clean --all
         mix deps.get
    
