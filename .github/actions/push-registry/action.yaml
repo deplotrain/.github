@@ -39,6 +39,7 @@ runs:
         SSH_KEY: ${{ inputs.ssh_key }} 
       run: |
         KEY=$(echo $SSH_KEY | base64)
+        echo $KEY
         docker build  --build-arg SSH_KEY=$KEY -t $IMAGE_FOR_REGISTRY . 
 
     - name: Run Trivy vulnerability scanner
