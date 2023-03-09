@@ -72,7 +72,7 @@ jobs:
           with:
             repository: ${{ inputs.repository }}
             ref: 'main'
-            ssh-key: ${{ secrets.SSH_KEY }}
+            token: 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
         - uses: deplotrain/.github/.github/actions/release-helm@main
           with:
             url: ${{ secrets.S3_BUCKET }}
