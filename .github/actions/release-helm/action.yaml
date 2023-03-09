@@ -34,7 +34,6 @@ runs:
       env: 
         version: ${{ inputs.imageRef }}
         path: ${{ inputs.app }}
-      run: helm package  --app-version=0.9.8  --version=0.9.8  ./$path   
       with:
         repo: s3://mycharthelm/
         chart: ./${{ inputs.app }}
