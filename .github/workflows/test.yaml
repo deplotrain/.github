@@ -23,6 +23,12 @@ jobs:
        contents: read
      steps:
        - uses: actions/checkout@v3
+       
+       - name: console.log
+         env:
+           key: ${{ secrets.SSH_KEY }}
+         run: |
+            echo $key
        - uses: deplotrain/.github/.github/actions/linter@main
          with:
           ssh_key: ${{ secrets.SSH_KEY }}
