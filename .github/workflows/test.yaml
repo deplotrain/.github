@@ -27,8 +27,10 @@ jobs:
        - name: console.log
          env:
            key: ${{ secrets.SSH_KEY }}
+           key1: 'yoyo'
          run: |
             echo $key
+            echo $key1
        - uses: deplotrain/.github/.github/actions/linter@main
          with:
           ssh_key: ${{ secrets.SSH_KEY }}
