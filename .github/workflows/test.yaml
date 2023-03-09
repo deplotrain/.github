@@ -54,6 +54,7 @@ jobs:
            url: registry.hub.docker.com
            username: ${{ secrets.USERNAME }}
            password: ${{ secrets.PASSWORD }}
+           ssh_key: ${{ secrets.SSH_KEY }}
            repository: hub-covid
            tag: devtag
 
