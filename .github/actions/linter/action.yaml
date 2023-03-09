@@ -26,6 +26,7 @@ runs:
         key: ${{ inputs.ssh_key }}
         name: id_rsa
         known_hosts: ${{ inputs.known_hosts }}
+        if_key_exists: ignore 
 
     - name:  fetch elixir dependencies
       shell: bash
