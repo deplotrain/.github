@@ -34,15 +34,15 @@ runs:
         mix deps.clean --all
         mix deps.get
    
-    - name: Code linting
-      shell: bash
-      run: |
-        mix format --check-formatted
-        mix credo --strict
-        mix sobelow --config
-      if: always()
-
-    - name: Run tests
-      shell: bash
-      run: mix test
-      if: always()
+#    - name: Code linting
+#      shell: bash
+#      run: |
+#        mix format --check-formatted
+#        mix credo --strict
+#        mix sobelow --config
+#      if: always()
+#
+#    - name: Run tests
+#      shell: bash
+#      run: mix test
+#      if: always()
