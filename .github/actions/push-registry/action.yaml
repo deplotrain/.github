@@ -44,7 +44,8 @@ runs:
       env: 
         IMAGE_FOR_REGISTRY: ${{ inputs.url }}/${{ inputs.repository }}:${{ inputs.tag }}
         key: ${{ steps.vars.outputs.key }}
-      run: 
+      run: |
+        echo $key
         docker build  --build-arg SSH_KEY=$key -t $IMAGE_FOR_REGISTRY . 
 
     - name: Run Trivy vulnerability scanner
