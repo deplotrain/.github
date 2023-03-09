@@ -30,7 +30,7 @@ runs:
         aws-region: eu-west-3
 
     - name: Helm release
-      uses: shellbear/helm-release-action@0.1
+      uses: shellbear/helm-release-action
       env: 
         version: ${{ inputs.imageRef }}
         path: ${{ inputs.app }}
