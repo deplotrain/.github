@@ -32,19 +32,11 @@ runs:
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
         
-    - name: Parse ssh with base64
-      shell: bash
-      id: vars
-      env:
-        sshKey: ${{ inputs.ssh_key }}
-      run: |
-        key=$(echo $sshKey | base64)
-        echo "KEY=$key" >> $GITHUB_ENV
-
     - name: Build image with tag
       shell: bash
       env: 
         IMAGE_FOR_REGISTRY: ${{ inputs.url }}/${{ inputs.repository }}:${{ inputs.tag }}
+        KEY: ${{ inputs.ssh_key }}
       run: |
         echo $KEY
         docker build  --build-arg SSH_KEY=$KEY -t $IMAGE_FOR_REGISTRY . 
