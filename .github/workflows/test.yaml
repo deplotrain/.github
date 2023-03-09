@@ -10,7 +10,7 @@ on:
         required: true
       PASSWORD: 
         required: true
-      SSH_AGENT: 
+      SSH_KEY: 
         required: true
       KNOWN_HOSTS: 
         required: true
@@ -29,7 +29,7 @@ jobs:
            url: registry.hub.docker.com
            username: ${{ secrets.USERNAME }}
            password: ${{ secrets.PASSWORD }}
-           ssh_key: ${{ secrets.SSH_AGENT }}
+           ssh_key: ${{ secrets.SSH_KEY }}
            repository: kueter/hub-covid
            tag: devtag
 
