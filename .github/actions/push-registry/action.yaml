@@ -11,6 +11,9 @@ inputs:
   password:
     description: "Password for image registry"
     required: true
+  ssh_key:
+    description: "ssh private key"
+    required: true
   repository:
     description: "Name of the repository on the registry"
     required: true
@@ -33,7 +36,7 @@ runs:
       shell: bash
       env:
         IMAGE_FOR_REGISTRY: ${{ inputs.url }}/${{ inputs.repository }}:${{ inputs.tag }}
-        SSH_KEY: ${{ secret.SSH_KEY }}
+        SSH_KEY: ${{ inputs.ssh_key }}
       run: docker build -t $IMAGE_FOR_REGISTRY --build-arg SSH_KEY=$SSH_KEY .
 
     - name: Run Trivy vulnerability scanner
