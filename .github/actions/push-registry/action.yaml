@@ -33,6 +33,7 @@ runs:
         password: ${{ inputs.password }}
         
     - name: Parse ssh with base64
+      shell: bash
       id: vars
       env:
        KEY: ${{ inputs.ssh_key }}
