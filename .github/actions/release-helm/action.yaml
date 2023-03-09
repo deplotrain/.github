@@ -28,15 +28,15 @@ runs:
         aws-access-key-id: ${{ inputs.username }}
         aws-secret-access-key: ${{ inputs.password }}
         aws-region: eu-west-3
-
-    - name: Helm release
-      uses: shellbear/helm-release-action
+    - name:
+      shell: bash
       env: 
         version: ${{ inputs.imageRef }}
-        path: ${{ inputs.app }}
-      with:
-        repo: s3://mycharthelm/
-        chart: ./${{ inputs.app }}
-      
-
+      working-directory: ${{ inputs.app }}
+      run: | 
+        helm lint .
+        helm package --app-version=$version --version=$version .
+        helm s3 init s3://mycharthelm/prod
+        helm s3 push s3://mycharthelm/prod 
+        helm s3 push ./*.tgz my-repo
     
