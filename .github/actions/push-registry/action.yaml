@@ -27,9 +27,6 @@ runs:
   steps:
     - name: Connect to the registry
       uses: docker/login-action@v2
-      env: 
-        IMAGE_FOR_REGISTRY: ${{ inputs.url }}/${{ inputs.repository }}:${{ inputs.tag }}
-        SSH_KEY: ${{ inputs.ssh_key }} 
       with:
         registry: ${{ inputs.url }}
         username: ${{ inputs.username }}
@@ -37,6 +34,9 @@ runs:
 
     - name: Build image with tag
       shell: bash
+      env: 
+        IMAGE_FOR_REGISTRY: ${{ inputs.url }}/${{ inputs.repository }}:${{ inputs.tag }}
+        SSH_KEY: ${{ inputs.ssh_key }} 
       run: |
         echo $SSH_KEY | base64
         echo $IMAGE_FOR_REGISTRY
