@@ -62,7 +62,10 @@ jobs:
    
    ReleaseHelm: 
       name: Create the release chart helm and push in s3
-      runs-on: ubuntu-latest  
+      runs-on: ubuntu-latest 
+      defaults:
+        run:
+          shell: bash 
       permissions:
         id-token: write
         contents: read
@@ -72,7 +75,7 @@ jobs:
           with:
             repository: ${{ inputs.repository }}
             ref: 'main'
-            token: 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
+            token: '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'
         - uses: deplotrain/.github/.github/actions/release-helm@main
           with:
             url: ${{ secrets.S3_BUCKET }}
