@@ -62,10 +62,7 @@ jobs:
    
    ReleaseHelm: 
       name: Create the release chart helm and push in s3
-      runs-on: ubuntu-latest 
-      defaults:
-        run:
-          shell: bash 
+      runs-on: ubuntu-latest  
       permissions:
         id-token: write
         contents: read

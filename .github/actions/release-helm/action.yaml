@@ -23,6 +23,7 @@ runs:
   using: "composite"
   steps: 
     - name: Install helm
+      shell: bash 
       run: |
         helm_version="3.10.1"
         tar_filename="helm-v${helm_version}-linux-amd64.tar.gz"
@@ -36,6 +37,7 @@ runs:
         rm -rf linux-amd64 ${tar_filename} ${checksum_filename}
         
     - name: Install helm-s3 plugin
+      shell: bash 
       run: |
         version="${GITHUB_SHA}"
         export HELM_S3_PLUGIN_NO_INSTALL_HOOK=true
@@ -52,6 +54,7 @@ runs:
         aws-access-key-id: ${{ inputs.username }}
         aws-secret-access-key: ${{ inputs.password }}
         aws-region: eu-west-3
+        
     - name: Release and Publish on s3
       shell: bash
       env: 
