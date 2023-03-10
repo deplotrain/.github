@@ -1,0 +1,27 @@
+name: Custom checkout private repository
+description: Custom checkout private repository
+
+inputs:
+  repo_name:
+    description: The repo name
+    required: true
+  ssh_key:
+    description: the private ssh key
+    required: true
+
+runs:
+  # allow you to bundle multiple workflow steps into a single action, combining multiple run commands into a single reusable action.
+  using: "composite"
+  steps: 
+
+    - name: Setup SSH
+      uses: MrSquaare/ssh-setup-action@v1
+      with:
+          host: github.com
+          private-key: ${{ inputs.ssh_key }}
+          
+    - name: Clone repository
+      shell: bash
+      env:
+       repo: ${{ inputs.repo_name}}
+      run: git clone git@github.com:deplotrain/$repo

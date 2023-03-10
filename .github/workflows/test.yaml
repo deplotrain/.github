@@ -63,19 +63,16 @@ jobs:
    ReleaseHelm: 
       name: Create the release chart helm and push in s3
       runs-on: ubuntu-latest  
-      # permissions:
-      #   id-token: write
-      #   contents: read
+      permissions:
+        id-token: write
+        contents: read
       steps:
    
-        - uses: actions/checkout@v2
-
-        - name: Checkout Helm repo
-          uses: actions/checkout@v2
-          with:
-            repository: ${{ inputs.repository }}
-            ref: 'main'
-            path: ${{ inputs.appName }}
+        - uses: deplotrain/.github/.github/actions/custom-checkout@main
+          with: 
+            repo_name: ${{ inputs.repository }}
+            ssh_key: ${{ secrets.SSH_KEY }}
+            
 
         - uses: deplotrain/.github/.github/actions/release-helm@main
           with:
