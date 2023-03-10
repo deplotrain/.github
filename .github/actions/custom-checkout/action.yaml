@@ -30,5 +30,6 @@ runs:
       env:
        repo: ${{ inputs.repo_name}}
       run: | 
+        eval "$(ssh-agent -s)"
         ssh-add ~/.ssh/id_rsa
         git clone git@github.com:deplotrain/$repo
