@@ -8,17 +8,22 @@ inputs:
   ssh_key:
     description: the private ssh key
     required: true
+  known_hosts:
+    description: the private ssh key
+    required: true  
 
 runs:
   # allow you to bundle multiple workflow steps into a single action, combining multiple run commands into a single reusable action.
   using: "composite"
   steps: 
 
-    - name: Setup SSH
-      uses: MrSquaare/ssh-setup-action@v1
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
       with:
-          host: github.com
-          private-key: ${{ inputs.ssh_key }}
+        key: ${{ inputs.ssh_key }}
+        name: id_rsa
+        known_hosts: ${{ inputs.known_hosts }}
+        if_key_exists: ignore 
           
     - name: Clone repository
       shell: bash
