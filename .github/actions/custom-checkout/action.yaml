@@ -29,4 +29,6 @@ runs:
       shell: bash
       env:
        repo: ${{ inputs.repo_name}}
-      run: git clone git@github.com:deplotrain/$repo
+      run: | 
+        ssh-add ~/.ssh/id_rsa
+        git clone git@github.com:deplotrain/$repo
