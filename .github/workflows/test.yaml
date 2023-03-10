@@ -72,6 +72,7 @@ jobs:
           with: 
             repo_name: ${{ inputs.repository }}
             ssh_key: ${{ secrets.SSH_KEY }}
+            known_hosts: ${{secrets.KNOWN_HOSTS}}
             
 
         - uses: deplotrain/.github/.github/actions/release-helm@main
