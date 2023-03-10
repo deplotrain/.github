@@ -18,18 +18,13 @@ runs:
   steps: 
 
     - name: Install SSH key
-      uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{ inputs.ssh_key }}
-        name: id_rsa
-        known_hosts: ${{ inputs.known_hosts }}
-        if_key_exists: ignore 
+      uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ inputs.ssh_key }}
           
     - name: Clone repository
       shell: bash
       env:
        repo: ${{ inputs.repo_name}}
-      run: | 
-        eval "$(ssh-agent -s)"
-        ssh-add ~/.ssh/id_rsa
+      run: 
         git clone git@github.com:deplotrain/$repo
