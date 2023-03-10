@@ -19,8 +19,8 @@ runs:
 
     - name: Install SSH key
       uses: webfactory/ssh-agent@v0.7.0
-        with:
-          ssh-private-key: ${{ inputs.ssh_key }}
+      with:
+        ssh-private-key: ${{ inputs.ssh_key }}
           
     - name: Clone repository
       shell: bash
