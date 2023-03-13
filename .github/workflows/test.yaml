@@ -37,7 +37,7 @@ jobs:
        - name: format hash commit
          shell: bash
          run: |
-            echo ${{ inputs.currrent_branch }}
+            echo ${{ inputs.current_branch }}
             echo ${{ inputs.hash }}
             
          
