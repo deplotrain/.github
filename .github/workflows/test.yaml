@@ -5,6 +5,9 @@ on:
       current_branch:
         required: true
         type: string
+      hash:
+        required: true
+        type: string
       repository:
         required: true
         type: string
@@ -31,7 +34,13 @@ jobs:
        contents: read
      steps:
        - uses: actions/checkout@v3
-       
+       - name: format hash commit
+         shell: bash
+         run: |
+            echo ${{ inputs.currrent_branch }}
+            echo ${{ inputs.hash }}
+            
+         
        - uses: deplotrain/.github/.github/actions/linter@main
          with:
           ssh_key: ${{ secrets.SSH_KEY }}
