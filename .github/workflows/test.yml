@@ -27,6 +27,7 @@ jobs:
         with:
           repository: yorhood/helm-corp
           token: ${{ secrets.PAT }}
+          path: momo
           
 
       # Runs a single command using the runners shell
